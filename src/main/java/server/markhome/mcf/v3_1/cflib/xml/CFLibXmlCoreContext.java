@@ -62,9 +62,9 @@ public class CFLibXmlCoreContext {
 	private CFLibXmlCoreContext prevContext = null;
 
 	/**
-	 *	The StringBuffer to receive character event data.
+	 *	The StringBuilder to receive character event data.
 	 */
-	private StringBuffer elementText = new StringBuffer();
+	private StringBuilder elementText = new StringBuilder();
 
 	/**
 	 *	The XmlCoreElementHandler selected to handle the

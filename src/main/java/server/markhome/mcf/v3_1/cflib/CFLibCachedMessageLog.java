@@ -46,7 +46,7 @@ import java.io.*;
 public class CFLibCachedMessageLog
 implements ICFLibMessageLog {
 
-	private StringBuffer cacheContents = new StringBuffer();
+	private StringBuilder cacheContents = new StringBuilder();
 	private int		   	indent = 0;
 	
 	/**
