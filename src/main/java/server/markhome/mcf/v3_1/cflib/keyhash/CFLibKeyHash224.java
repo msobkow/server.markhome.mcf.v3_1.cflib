@@ -55,10 +55,10 @@ import java.util.Set;
  * @author msobkow
  */
 public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implements ICFLibKeyHash224, Serializable {
-
   static final long serialVersionUID = 202608160342L;
+  protected byte[] bytes;
 
-  static public int compareOrdered(CFLibKeyHash224 h1, CFLibKeyHash224 h2) {
+  static public int compareOrdered(ICFLibKeyHash224 h1, ICFLibKeyHash224 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -73,8 +73,8 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
       }
       else {
         for (int i = 0; i < HASH_LENGTH; i++) {
-          int v1 = h1.bytes[i] + 256;
-          int v2 = h2.bytes[i] + 256;
+          int v1 = h1.getBytes()[i] + 256;
+          int v2 = h2.getBytes()[i] + 256;
           if (v1 < v2) return -1;
           if (v1 > v2) return 1;
         }
@@ -121,8 +121,6 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     }
   }
   
-  protected byte[] bytes;
-
   public static byte[] sbytesFromHex(String string) {
     if (string == null) {
       // allowed
@@ -149,11 +147,11 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     return h;
   }
 
-  public static Comparator<CFLibKeyHash224> getComparator() {
+  public static Comparator<ICFLibKeyHash224> getComparator() {
 
-    return new Comparator<CFLibKeyHash224>() {
+    return new Comparator<ICFLibKeyHash224>() {
       @Override
-      public int compare(CFLibKeyHash224 a, CFLibKeyHash224 b) {
+      public int compare(ICFLibKeyHash224 a, ICFLibKeyHash224 b) {
         return compareOrdered(a, b);
       }
     };
@@ -174,11 +172,14 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     super(anId);
   }
 
-  public CFLibKeyHash224(CFLibKeyHash224 otherKey) {
-    super(otherKey);
+  public CFLibKeyHash224(ICFLibKeyHash224 otherKey) {
+	bytes = new byte[HASH_LENGTH];
+	if(otherKey != null) {
+		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
+	}
   }
 
-  public CFLibKeyHash224(CFLibKeyHash256 otherKey) {
+  public CFLibKeyHash224(ICFLibKeyHash256 otherKey) {
     super();
     if (otherKey == null) {
       bytes = new byte[HASH_LENGTH];
@@ -189,7 +190,7 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     this.bytes = _newId;
   }
 
-  public CFLibKeyHash224(CFLibKeyHash384 otherKey) {
+  public CFLibKeyHash224(ICFLibKeyHash384 otherKey) {
     super();
     if (otherKey == null) {
       bytes = new byte[HASH_LENGTH];
@@ -200,7 +201,7 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     this.bytes = _newId;
   }
 
-  public CFLibKeyHash224(CFLibKeyHash512 otherKey) {
+  public CFLibKeyHash224(ICFLibKeyHash512 otherKey) {
     super();
     if (otherKey == null) {
       bytes = new byte[HASH_LENGTH];
@@ -237,8 +238,7 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
    * Get a new hash object with the key set to all 0s
    */
   static public CFLibKeyHash224 nullGet() {
-    CFLibKeyHash224 k = new CFLibKeyHash224();
-    k.bytes = new byte[HASH_LENGTH];
+    CFLibKeyHash224 k = new CFLibKeyHash224(new byte[HASH_LENGTH]);
     return k;
   }
 
@@ -310,11 +310,11 @@ public class CFLibKeyHash224 extends CFLibKeyHashBase<CFLibKeyHash224> implement
     return new CFLibKeyHash224(0);
   }
 
-  public static CFLibKeyHash224 hash(CFLibKeyHash224... payload) {
+  public static CFLibKeyHash224 hash(ICFLibKeyHash224... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (CFLibKeyHash224 k : payload) {
-        md.update(k.bytes);
+      for (ICFLibKeyHash224 k : payload) {
+        md.update(k.getBytes());
       }
       return new CFLibKeyHash224(md.digest());
     }

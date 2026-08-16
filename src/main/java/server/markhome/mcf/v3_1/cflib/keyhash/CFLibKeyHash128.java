@@ -55,8 +55,8 @@ import java.util.Set;
  * @author msobkow
  */
 public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implements ICFLibKeyHash128, Serializable {
-
   static final long serialVersionUID = 202608160340L;
+  protected byte[] bytes;
 
   @Override
   public int getHashLength() {
@@ -79,7 +79,7 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     return m;
   }
 
-  static public int compareOrdered(CFLibKeyHash128 h1, CFLibKeyHash128 h2) {
+  static public int compareOrdered(ICFLibKeyHash128 h1, ICFLibKeyHash128 h2) {
     if (h1 == null) {
       if (h2 == null) {
         return 0;
@@ -94,8 +94,8 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
       }
       else {
         for (int i = 0; i < HASH_LENGTH; i++) {
-          int v1 = h1.bytes[i] + 256;
-          int v2 = h2.bytes[i] + 256;
+          int v1 = h1.getBytes()[i] + 256;
+          int v2 = h2.getBytes()[i] + 256;
           if (v1 < v2) return -1;
           if (v1 > v2) return 1;
         }
@@ -121,8 +121,6 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     }
   }
   
-  protected byte[] bytes;
-
   public static byte[] sbytesFromHex(String string) {
     if (string == null) {
       // allowed
@@ -149,11 +147,11 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     return h;
   }
 
-  public static Comparator<CFLibKeyHash128> getComparator() {
+  public static Comparator<ICFLibKeyHash128> getComparator() {
 
-    return new Comparator<CFLibKeyHash128>() {
+    return new Comparator<ICFLibKeyHash128>() {
       @Override
-      public int compare(CFLibKeyHash128 a, CFLibKeyHash128 b) {
+      public int compare(ICFLibKeyHash128 a, ICFLibKeyHash128 b) {
         return compareOrdered(a, b);
       }
     };
@@ -173,39 +171,42 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     super(anId);
   }
 
-  public CFLibKeyHash128(CFLibKeyHash128 otherKey) {
-    super(otherKey);
+  public CFLibKeyHash128(ICFLibKeyHash128 otherKey) {
+	bytes = new byte[HASH_LENGTH];
+	if(otherKey != null) {
+		System.arraycopy(otherKey.getBytes(), 0, bytes, 0, HASH_LENGTH);
+	}
   }
 
-  public CFLibKeyHash128(CFLibKeyHash160 k) {
+  public CFLibKeyHash128(ICFLibKeyHash160 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public CFLibKeyHash128(CFLibKeyHash224 k) {
+  public CFLibKeyHash128(ICFLibKeyHash224 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public CFLibKeyHash128(CFLibKeyHash256 k) {
+  public CFLibKeyHash128(ICFLibKeyHash256 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public CFLibKeyHash128(CFLibKeyHash384 k) {
+  public CFLibKeyHash128(ICFLibKeyHash384 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
     }
   }
 
-  public CFLibKeyHash128(CFLibKeyHash512 k) {
+  public CFLibKeyHash128(ICFLibKeyHash512 k) {
     bytes = new byte[HASH_LENGTH];
     if (k != null) {
       System.arraycopy(k.getBytes(), 0, bytes, 0, HASH_LENGTH);
@@ -237,8 +238,7 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
    * Get a new hash object with the key set to all 0s
    */
   static public CFLibKeyHash128 nullGet() {
-    CFLibKeyHash128 k = new CFLibKeyHash128();
-    k.bytes = new byte[HASH_LENGTH];
+    CFLibKeyHash128 k = new CFLibKeyHash128(new byte[HASH_LENGTH]);
     return k;
   }
 
@@ -310,11 +310,11 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     return new CFLibKeyHash128(0);
   }
 
-  public static CFLibKeyHash128 hash(CFLibKeyHash128... payload) {
+  public static CFLibKeyHash128 hash(ICFLibKeyHash128... payload) {
     try {
       MessageDigest md = MessageDigest.getInstance(HASH_ALGO);
-      for (CFLibKeyHash128 k : payload) {
-        md.update(k.bytes);
+      for (ICFLibKeyHash128 k : payload) {
+        md.update(k.getBytes());
       }
       return new CFLibKeyHash128(md.digest());
     }
