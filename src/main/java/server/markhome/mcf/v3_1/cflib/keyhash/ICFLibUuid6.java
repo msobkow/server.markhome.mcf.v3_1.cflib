@@ -101,4 +101,6 @@ public interface ICFLibUuid6 {
      * String format for Uuid6 values is 62 characters long
      */
     public final static int STRING_LENGTH = (TOTAL_BYTES * 2) + 6;
+
+    public byte[] getBytes();
 }
