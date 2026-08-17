@@ -58,6 +58,13 @@ public class CFLibKeyHash160 extends CFLibKeyHashBase<CFLibKeyHash160> implement
   static final long serialVersionUID = 202608160341L;
   protected byte[] bytes;
 
+  @Override
+  @SuppressWarnings("unchecked")
+  public int compareTo(ICFLibKeyHash160 o) {
+    int result = compare((ICFLibKeyHash160) this, o);
+    return result;
+  }
+
   static public int compareOrdered(ICFLibKeyHash160 h1, ICFLibKeyHash160 h2) {
     if (h1 == null) {
       if (h2 == null) {

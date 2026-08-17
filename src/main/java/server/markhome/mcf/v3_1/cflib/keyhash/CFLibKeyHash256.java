@@ -58,6 +58,13 @@ public class CFLibKeyHash256 extends CFLibKeyHashBase<CFLibKeyHash256> implement
   static final long serialVersionUID = 202608160343L;
   protected byte[] bytes;
 
+  @Override
+  @SuppressWarnings("unchecked")
+  public int compareTo(ICFLibKeyHash256 o) {
+    int result = compare((ICFLibKeyHash256) this, o);
+    return result;
+  }
+
   static public int compareOrdered(ICFLibKeyHash256 h1, ICFLibKeyHash256 h2) {
     if (h1 == null) {
       if (h2 == null) {

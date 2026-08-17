@@ -79,6 +79,13 @@ public class CFLibKeyHash128 extends CFLibKeyHashBase<CFLibKeyHash128> implement
     return m;
   }
 
+  @Override
+  @SuppressWarnings("unchecked")
+  public int compareTo(ICFLibKeyHash128 o) {
+    int result = compare((ICFLibKeyHash128) this, o);
+    return result;
+  }
+
   static public int compareOrdered(ICFLibKeyHash128 h1, ICFLibKeyHash128 h2) {
     if (h1 == null) {
       if (h2 == null) {

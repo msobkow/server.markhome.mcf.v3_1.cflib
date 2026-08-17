@@ -132,6 +132,8 @@ public interface ICFLibKeyHash128 {
 		}
 	}
 
+	public int compareTo(ICFLibKeyHash128 o);
+
 	public default int compare(ICFLibKeyHash128 h1, ICFLibKeyHash128 h2) {
 		if (h1 == null) {
 			if (h2 == null) {
