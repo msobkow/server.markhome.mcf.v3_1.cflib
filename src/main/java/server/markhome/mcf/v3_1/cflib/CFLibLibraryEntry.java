@@ -1,6 +1,6 @@
 package server.markhome.mcf.v3_1.cflib;
 
-import org.teavm.jso.export.JSExport;
+import org.teavm.jso.JSExport;
 
 public class CFLibLibraryEntry {
 

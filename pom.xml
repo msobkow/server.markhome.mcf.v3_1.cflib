@@ -28,6 +28,9 @@
 	<jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
 	<spring.version>4.0.5</spring.version>
     <mcf.version>3.1.42</mcf.version>
+	<teavm.version>0.15.0</teavm.version>
+	<teavm-lambda.version>0.1.6</teavm-lambda.version>
+	<teavm-dom.version>0.3.2</teavm-dom.version>
   </properties>
 
 	<dependencies>
@@ -35,12 +38,6 @@
 	        <groupId>ch.qos.logback</groupId>
 	        <artifactId>logback-classic</artifactId>
 	        <version>${logback.version}</version>
-	    </dependency>
-	    <dependency>
-	        <groupId>org.postgresql</groupId>
-	        <artifactId>postgresql</artifactId>
-	        <version>42.7.12</version>
-	        <scope>runtime</scope>
 	    </dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -70,6 +67,102 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>${jaxb-api.version}</version>
 	    </dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-jso</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-metaprogramming-api</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-jso-apis</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-classlib</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-dom</artifactId>
+			<version>${teavm-dom.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-core</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-extension-spi</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ca.weblite</groupId>
+			<artifactId>teavm-lambda-core</artifactId>
+			<version>${teavm-lambda.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-jso-impl</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-tooling</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-extension-apis</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-metaprogramming-impl</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-junit</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-interop</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.teavm</groupId>
+			<artifactId>teavm-platform</artifactId>
+			<version>${teavm.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ca.weblite</groupId>
+			<artifactId>teavm-lambda-processor</artifactId>
+			<version>${teavm-lambda.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<distributionManagement>
@@ -128,10 +221,10 @@
           			<useModulePath>false</useModulePath>
         		</configuration>
       		</plugin>
-			<!--plugin>
+			<plugin>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-maven-plugin</artifactId>
-				<version>0.15.0</version>
+				<version>${teavm.version}</version>
 				<executions>
 					<execution>
 						<id>compile-to-javascript</id>
@@ -149,12 +242,84 @@
 							<optimizationLevel>SIMPLE</optimizationLevel>
 							<sourceMapsGenerated>true</sourceMapsGenerated>
 							<preservedClasses>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibBlah</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibRuntimeException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibConsoleMessageLog</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibDbException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibEditAlreadyOpenException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibEmptyArgumentException</string>
+								<string>server.markhome.mcf.v3_1.cflib.ICFLibAnyObj</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibFiringList</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibInvalidStateException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibMustOverrideException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibNotSupportedException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibNullArgumentException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibPrimaryKeyNotNewException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibUniqueIndexViolationException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibUnrecognizedAttributeException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibUnsupportedClassException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFRelationType</string>
+								<string>server.markhome.mcf.v3_1.cflib.inz.IInzEffectiveLangCode</string>
+								<string>server.markhome.mcf.v3_1.cflib.inz.Inz</string>
+								<string>server.markhome.mcf.v3_1.cflib.inz.InzPathEntry</string>
+								<string>server.markhome.mcf.v3_1.cflib.inz.InzEntry</string>
+								<string>server.markhome.mcf.v3_1.cflib.inz.InzLang</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibHostAddr</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash128$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash128</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHashBase</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash128</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash160</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash224</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash256</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash384</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash512</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash160$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash160</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash224$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash224</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash256$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash256</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash384$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash384</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash512$1</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash512</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHashUtil</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibUuid6$Holder</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibUuid6</string>
+								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibUuid6</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreContext</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreElementHandler</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreParser</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreContextFactory</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreIso8859Encoder</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreSaxParser</string>
+								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLib</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentOverflowException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentRangeException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentUnderflowException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibBigDecimalUtil</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibCachedMessageLog</string>
+								<string>server.markhome.mcf.v3_1.cflib.ICFLibMessageLog</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibCannotDeleteNewInstanceException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibCannotMoveEditedObjectException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibCollisionDetectedException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibDataNotFoundException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibDependentsDetectedException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibFireOnInstanceOf</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibInvalidArgumentException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibNotImplementedYetException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibPermissionDeniedException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibStaleCacheDetectedException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibUnresolvedRelationException</string>
+								<string>server.markhome.mcf.v3_1.cflib.CFLibUsageException</string>
 							</preservedClasses>
 						</configuration>
 					</execution>
 				</executions>
-			</plugin-->
+			</plugin>
     	</plugins>
   </build>
 
