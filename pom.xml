@@ -16,21 +16,21 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
     <xerces.version>2.12.2</xerces.version>
     <junit-jupiter.version>6.0.1</junit-jupiter.version>
 	<logback.version>1.5.22</logback.version>
 	<commons-codec.version>1.21.0</commons-codec.version>
 	<commons-text.version>1.15.0</commons-text.version>
 	<jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version>
-	<jakarta-annotation-api.version>3.0.0</jakarta-annotation-api.version>
-	<jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
 	<spring.version>4.0.5</spring.version>
     <mcf.version>3.1.42</mcf.version>
 	<teavm.version>0.15.0</teavm.version>
 	<teavm-lambda.version>0.1.6</teavm-lambda.version>
-	<teavm-dom.version>0.3.2</teavm-dom.version>
+	<js.output.name>js/cflib.js</js.output.name>
+	<maven-compiler.version>3.15.0</maven-compiler.version>
+	<graalvm-buildtools.version>1.1.10</graalvm-buildtools.version>
   </properties>
 
 	<dependencies>
@@ -67,102 +67,96 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>${jaxb-api.version}</version>
 	    </dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-jso</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-metaprogramming-api</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-jso-apis</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-classlib</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-dom</artifactId>
-			<version>${teavm-dom.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-core</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-extension-spi</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>ca.weblite</groupId>
 			<artifactId>teavm-lambda-core</artifactId>
 			<version>${teavm-lambda.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-jso-impl</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-tooling</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-extension-apis</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-metaprogramming-impl</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-junit</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-interop</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>org.teavm</groupId>
 			<artifactId>teavm-platform</artifactId>
 			<version>${teavm.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
+		</dependency-->
+		<!-- dependency>
 			<groupId>ca.weblite</groupId>
 			<artifactId>teavm-lambda-processor</artifactId>
 			<version>${teavm-lambda.version}</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency-->
 	</dependencies>
 
 	<distributionManagement>
@@ -177,6 +171,7 @@
 			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
 		</snapshotRepository>
 	</distributionManagement>
+
 	<build>
 		<extensions>
 			<extension>
@@ -221,7 +216,7 @@
           			<useModulePath>false</useModulePath>
         		</configuration>
       		</plugin>
-			<plugin>
+			<!--plugin>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-maven-plugin</artifactId>
 				<version>${teavm.version}</version>
@@ -319,6 +314,59 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin-->
+			<!-- Standard Compiler Plugin configured to use the custom 'graalc' executable -->
+			<!--plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler.version}</version>
+				<configuration>
+					<fork>true</fork>
+					<executable>${env.GRAAL_JDK_HOME}/bin/javac</executable>
+					<compilerArgs>
+						<buildArg>-g</buildArg>
+						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
+						<buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg>
+						<buildArg>&#45;&#45;exact-reachability-metadata</buildArg>
+						<buildArg>&#45;&#45;future-defaults</buildArgs>
+						<buildArg>&#45;&#45;gc=serial</buildArg>
+						<buildArg>&#45;&#45;initialize-at-run-time</buildArg>
+						<buildArg>&#45;&#45;shared</buildArg>
+						<buildArg>&#45;&#45;jar</buildArg>
+						<buildArg>-o ${project.build.directory}/${js.output.name}</buildArg>
+					</compilerArgs>
+				</configuration>
+			</plugin-->
+			<plugin>
+				<groupId>org.graalvm.buildtools</groupId>
+				<artifactId>native-maven-plugin</artifactId>
+				<version>${graalvm-buildtools.version}</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>build-native</id>
+						<goals>
+							<goal>compile-no-fork</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<fork>true</fork>
+					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; javac </executable>
+					<compilerArgs>
+						<buildArg>-g</buildArg>
+						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
+						<buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg>
+						<buildArg>&#45;&#45;exact-reachability-metadata</buildArg>
+						<buildArg>&#45;&#45;future-defaults</buildArg>
+						<buildArg>&#45;&#45;gc=serial</buildArg>
+						<buildArg>&#45;&#45;initialize-at-run-time</buildArg>
+						<buildArg>&#45;&#45;shared</buildArg>
+						<buildArg>&#45;&#45;jar</buildArg>
+						<buildArg>-o ${project.build.directory}/${js.output.name}</buildArg>
+					</compilerArgs>
+				</configuration>
 			</plugin>
     	</plugins>
   </build>
@@ -328,7 +376,7 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.5.3</version><!--$NO-MVN-MAN-VER$-->
+            <version>3.5.3</version>
             <configuration>
                 <skipTests>false</skipTests>
                 <useSystemClassLoader>true</useSystemClassLoader>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>graal-js-compiler-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- Target name for the compiled JavaScript bundle -->
+        <js.output.name>blah.js</js.output.name>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Standard Compiler Plugin configured to use the custom 'graalc' executable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <!-- Force Maven to fork the compilation process to use an external executable -->
+                    <fork>true</fork>
+                    <!-- Specify the path to the custom 'graalc' binary inside the GraalVM JDK home directory -->
+                    <executable>${env.GRAAL_JDK_HOME}/bin/graalc</executable>
+                    <compilerArgs>
+                        <!-- Tells the compiler to output a single monolithic JavaScript file -->
+                        <arg>-o</arg>
+                        <arg>${project.build.directory}/${js.output.name}</arg>
+                        <!-- Standard optimization and compilation flags can be appended here -->
+                        <arg>-O3</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Per-package or per-module profile example to supply custom command-line arguments -->
+        <profile>
+            <id>package-alpha-config</id>
+            <activation>
+                <property>
+                    <name>buildProfile</name>
+                    <value>alpha</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <compilerArgs>
+                                <arg>-o</arg>
+                                <arg>${project.build.directory}/${js.output.name}</arg>
+                                <!-- Specific command line option provided on a per-package / per-build basis -->
+                                <arg>--enable-experimental-features</arg>
+                                <arg>--debug-symbols</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
