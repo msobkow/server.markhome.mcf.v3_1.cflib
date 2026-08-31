@@ -315,14 +315,13 @@
 					</execution>
 				</executions>
 			</plugin-->
-			<!-- Standard Compiler Plugin configured to use the custom 'graalc' executable -->
 			<!--plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler.version}</version>
 				<configuration>
 					<fork>true</fork>
-					<executable>${env.GRAAL_JDK_HOME}/bin/javac</executable>
+					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
 					<compilerArgs>
 						<buildArg>-g</buildArg>
 						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
@@ -353,7 +352,7 @@
 				</executions>
 				<configuration>
 					<fork>true</fork>
-					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; javac </executable>
+					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
 					<compilerArgs>
 						<buildArg>-g</buildArg>
 						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
