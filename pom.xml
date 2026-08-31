@@ -1,44 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>server.markhome.mcf</groupId>
-    <artifactId>server.markhome.mcf.v3_1</artifactId>
-    <version>3.1.42</version>
-  </parent>
+	<parent>
+		<groupId>server.markhome.mcf</groupId>
+		<artifactId>server.markhome.mcf.v3_1</artifactId>
+		<version>3.1.42</version>
+	</parent>
 
-  <groupId>server.markhome.mcf.v3_1</groupId>
-  <artifactId>server.markhome.mcf.v3_1.cflib</artifactId>
-  <version>3.1.42</version>
-  <name>server.markhome.mcf.v3_1.cflib</name>
-  <description>Mark's Code Fractal CFLib 3.1.42 - Common Library</description>
-  <url>email:mark.sobkow@gmail.com</url>
+	<groupId>server.markhome.mcf.v3_1</groupId>
+		<artifactId>server.markhome.mcf.v3_1.cflib</artifactId>
+		<version>3.1.42</version>
+		<name>server.markhome.mcf.v3_1.cflib</name>
+		<description>Mark's Code Fractal CFLib 3.1.42 - Common Library</description>
+	<url>email:mark.sobkow@gmail.com</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>25</maven.compiler.source>
-    <maven.compiler.target>25</maven.compiler.target>
-    <xerces.version>2.12.2</xerces.version>
-    <junit-jupiter.version>6.0.1</junit-jupiter.version>
-	<logback.version>1.5.22</logback.version>
-	<commons-codec.version>1.21.0</commons-codec.version>
-	<commons-text.version>1.15.0</commons-text.version>
-	<jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version>
-	<spring.version>4.0.5</spring.version>
-    <mcf.version>3.1.42</mcf.version>
-	<teavm.version>0.15.0</teavm.version>
-	<teavm-lambda.version>0.1.6</teavm-lambda.version>
-	<js.output.name>js/cflib.js</js.output.name>
-	<maven-compiler.version>3.15.0</maven-compiler.version>
-	<graalvm-buildtools.version>1.1.10</graalvm-buildtools.version>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>25</maven.compiler.source>
+		<maven.compiler.target>25</maven.compiler.target>
+		<xerces.version>2.12.2</xerces.version>
+		<junit-jupiter.version>6.0.1</junit-jupiter.version>
+		<logback.version>1.5.22</logback.version>
+		<commons-codec.version>1.21.0</commons-codec.version>
+		<commons-text.version>1.15.0</commons-text.version>
+		<jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version>
+		<spring.version>4.0.5</spring.version>
+		<mcf.version>3.1.42</mcf.version>
+		<js.output.name>cflib.js</js.output.name>
+		<maven-compiler.version>3.15.0</maven-compiler.version>
+		<maven-toolchains.version>3.3.0</maven-toolchains.version>
+		<graalvm-buildtools.version>1.1.10</graalvm-buildtools.version>
+		<slf4j.version>2.0.17-gov4j-1</slf4j.version>
+	</properties>
 
 	<dependencies>
-	    <dependency>
-	        <groupId>ch.qos.logback</groupId>
-	        <artifactId>logback-classic</artifactId>
-	        <version>${logback.version}</version>
-	    </dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -50,113 +50,33 @@
 			<artifactId>commons-text</artifactId>
 			<version>${commons-text.version}</version>
 		</dependency>
-	    <dependency>
-	        <groupId>org.junit.jupiter</groupId>
-	        <artifactId>junit-jupiter-api</artifactId>
-	        <version>${junit-jupiter.version}</version>
-	        <scope>test</scope>
-	    </dependency>
-	    <dependency>
-	        <groupId>org.junit.jupiter</groupId>
-	        <artifactId>junit-jupiter-engine</artifactId>
-	        <version>${junit-jupiter.version}</version>
-	        <scope>test</scope>
-	    </dependency>
-	    <dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>${xerces.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>${jaxb-api.version}</version>
-	    </dependency>
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-jso</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-metaprogramming-api</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-jso-apis</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-classlib</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-core</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-extension-spi</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>ca.weblite</groupId>
-			<artifactId>teavm-lambda-core</artifactId>
-			<version>${teavm-lambda.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-jso-impl</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-tooling</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-extension-apis</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-metaprogramming-impl</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-junit</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-interop</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.teavm</groupId>
-			<artifactId>teavm-platform</artifactId>
-			<version>${teavm.version}</version>
-			<scope>provided</scope>
-		</dependency-->
-		<!-- dependency>
-			<groupId>ca.weblite</groupId>
-			<artifactId>teavm-lambda-processor</artifactId>
-			<version>${teavm-lambda.version}</version>
-			<scope>provided</scope>
-		</dependency-->
+		</dependency>
+		<dependency>
+			<groupId>org.gov4j.thirdparty.org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 	</dependencies>
 
 	<distributionManagement>
@@ -180,7 +100,7 @@
 				<version>1.0-beta-6</version>
 			</extension>
 		</extensions>
-    	<plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -208,134 +128,50 @@
 					<skipStaging>true</skipStaging>
 				</configuration>
 			</plugin>
-      		<plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-surefire-plugin</artifactId>
-        		<version>3.5.3</version>
-        		<configuration>
-          			<useModulePath>false</useModulePath>
-        		</configuration>
-      		</plugin>
-			<!--plugin>
-				<groupId>org.teavm</groupId>
-				<artifactId>teavm-maven-plugin</artifactId>
-				<version>${teavm.version}</version>
-				<executions>
-					<execution>
-						<id>compile-to-javascript</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</mainClass> 
-							<targetDirectory>${project.build.directory}/generated-js</targetDirectory>
-							<targetFileName>cflib-module.js</targetFileName>
-							<jsTargetType>WEBASSEMBLY_GC</jsTargetType>
-							<jsModuleType>ES2015</jsModuleType>
-							<minifying>false</minifying> 
-							<optimizationLevel>SIMPLE</optimizationLevel>
-							<sourceMapsGenerated>true</sourceMapsGenerated>
-							<preservedClasses>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibRuntimeException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibConsoleMessageLog</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibDbException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibEditAlreadyOpenException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibEmptyArgumentException</string>
-								<string>server.markhome.mcf.v3_1.cflib.ICFLibAnyObj</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibFiringList</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibInvalidStateException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibMustOverrideException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibNotSupportedException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibNullArgumentException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibPrimaryKeyNotNewException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibUniqueIndexViolationException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibUnrecognizedAttributeException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibUnsupportedClassException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFRelationType</string>
-								<string>server.markhome.mcf.v3_1.cflib.inz.IInzEffectiveLangCode</string>
-								<string>server.markhome.mcf.v3_1.cflib.inz.Inz</string>
-								<string>server.markhome.mcf.v3_1.cflib.inz.InzPathEntry</string>
-								<string>server.markhome.mcf.v3_1.cflib.inz.InzEntry</string>
-								<string>server.markhome.mcf.v3_1.cflib.inz.InzLang</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibHostAddr</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash128$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash128</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHashBase</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash128</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash160</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash224</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash256</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash384</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibKeyHash512</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash160$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash160</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash224$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash224</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash256$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash256</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash384$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash384</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash512$1</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHash512</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibKeyHashUtil</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibUuid6$Holder</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.CFLibUuid6</string>
-								<string>server.markhome.mcf.v3_1.cflib.keyhash.ICFLibUuid6</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreContext</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreElementHandler</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreParser</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreContextFactory</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreIso8859Encoder</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlCoreSaxParser</string>
-								<string>server.markhome.mcf.v3_1.cflib.xml.CFLibXmlUtil</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLib</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentOverflowException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentRangeException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibArgumentUnderflowException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibBigDecimalUtil</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibCachedMessageLog</string>
-								<string>server.markhome.mcf.v3_1.cflib.ICFLibMessageLog</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibCannotDeleteNewInstanceException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibCannotMoveEditedObjectException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibCollisionDetectedException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibDataNotFoundException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibDependentsDetectedException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibFireOnInstanceOf</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibInvalidArgumentException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibNotImplementedYetException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibPermissionDeniedException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibStaleCacheDetectedException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibUnresolvedRelationException</string>
-								<string>server.markhome.mcf.v3_1.cflib.CFLibUsageException</string>
-							</preservedClasses>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin-->
-			<!--plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<useModulePath>false</useModulePath>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<fork>true</fork>
-					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
-					<compilerArgs>
-						<buildArg>-g</buildArg>
-						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
-						<buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg>
-						<buildArg>&#45;&#45;exact-reachability-metadata</buildArg>
-						<buildArg>&#45;&#45;future-defaults</buildArgs>
-						<buildArg>&#45;&#45;gc=serial</buildArg>
-						<buildArg>&#45;&#45;initialize-at-run-time</buildArg>
-						<buildArg>&#45;&#45;shared</buildArg>
-						<buildArg>&#45;&#45;jar</buildArg>
-						<buildArg>-o ${project.build.directory}/${js.output.name}</buildArg>
-					</compilerArgs>
+					<toolchains>
+						<jdk>
+							<version>25</version>
+							<vendor>openjdk</vendor>
+						</jdk>
+						<jdk>
+							<version>graalvm-ce-25</version>
+							<vendor>graalvm.org</vendor>
+						</jdk>
+					</toolchains>
 				</configuration>
-			</plugin-->
+			</plugin>
 			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
@@ -351,39 +187,37 @@
 					</execution>
 				</executions>
 				<configuration>
-					<fork>true</fork>
-					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
-					<compilerArgs>
+					<!--executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JDK_HOME={env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable-->
+					<mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</mainClass>
+					<buildArgs>
 						<buildArg>-g</buildArg>
 						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
 						<buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg>
 						<buildArg>&#45;&#45;exact-reachability-metadata</buildArg>
 						<buildArg>&#45;&#45;future-defaults</buildArg>
-						<buildArg>&#45;&#45;gc=serial</buildArg>
-						<buildArg>&#45;&#45;initialize-at-run-time</buildArg>
-						<buildArg>&#45;&#45;shared</buildArg>
-						<buildArg>&#45;&#45;jar</buildArg>
-						<buildArg>-o ${project.build.directory}/${js.output.name}</buildArg>
-					</compilerArgs>
+						<buildArg>&#45;&#45;implicit:class</buildArg>
+						<buildArg>&#45;H:Preserve=all</buildArg>
+						<buildArg>-o ${project.build.directory}/js/${js.output.name}</buildArg>
+					</buildArgs>
 				</configuration>
 			</plugin>
-    	</plugins>
-  </build>
+		</plugins>
+	</build>
 
-  <reporting>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.5.3</version>
-            <configuration>
-                <skipTests>false</skipTests>
-                <useSystemClassLoader>true</useSystemClassLoader>
-            </configuration>
-        </plugin>
-        <plugin>
-            <artifactId>maven-project-info-reports-plugin</artifactId>
-        </plugin>
-    </plugins>
-  </reporting>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<skipTests>false</skipTests>
+					<useSystemClassLoader>true</useSystemClassLoader>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
