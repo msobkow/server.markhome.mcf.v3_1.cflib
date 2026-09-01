@@ -21,7 +21,9 @@
 		<xerces.version>2.12.2</xerces.version>
 		<junit-jupiter.version>6.0.1</junit-jupiter.version>
 		<logback.version>1.5.22</logback.version>
-		<commons-codec.version>1.21.0</commons-codec.version>
+		<commons-codec.version>1.22.1</commons-codec.version>
+		<commons-io.version>2.22.0</commons-io.version>
+		<commons-lang3.version>3.20.0</commons-lang3.version>
 		<commons-text.version>1.15.0</commons-text.version>
 		<jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version>
 		<spring.version>4.0.5</spring.version>
@@ -35,15 +37,21 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>${commons-codec.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -147,6 +155,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<executable>export PATH=${env.JAVA_JDK_HOME}/bin:${env.JAVA_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.JAVA_JDK_HOME} &amp;&amp; export JDK_HOME={env.JAVA_JDK_HOME} &amp;&amp; javac </executable>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -187,16 +198,16 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!--executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JDK_HOME={env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable-->
+					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export GRAALVM_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JDK_HOME={env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
 					<mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</mainClass>
 					<buildArgs>
 						<buildArg>-g</buildArg>
-						<buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg>
-						<buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg>
-						<buildArg>&#45;&#45;exact-reachability-metadata</buildArg>
-						<buildArg>&#45;&#45;future-defaults</buildArg>
-						<buildArg>&#45;&#45;implicit:class</buildArg>
-						<buildArg>&#45;H:Preserve=all</buildArg>
+						<!--buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg-->
+						<!--buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg-->
+						<!--buildArg>&#45;&#45;exact-reachability-metadata</buildArg-->
+						<!--buildArg>&#45;&#45;future-defaults</buildArg-->
+						<!--buildArg>&#45;&#45;implicit:class</buildArg-->
+						<!--buildArg>&#45;H:Preserve=all</buildArg-->
 						<buildArg>-o ${project.build.directory}/js/${js.output.name}</buildArg>
 					</buildArgs>
 				</configuration>
