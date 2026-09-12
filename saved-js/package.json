@@ -1,0 +1,17 @@
+{
+  "name": "mcf-commons-lang3-js",
+  "version": "1.0.0",
+  "description": "Cross-platform build of Apache commons-lang3 for GraalVM CE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Sobkow (mark.sobkow@gmail.com)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "pip": "^0.0.1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

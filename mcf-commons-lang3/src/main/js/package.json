@@ -1,0 +1,28 @@
+{
+  "name": "mcf-commons-lang3",
+  "version": "3.1.42-2026091111",
+  "description": "GraalVM build of Apache commons-lang3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+github.com:msobkow/cflib.git"
+  },
+  "keywords": [
+    "Apache",
+    "commons",
+    "lang3",
+    "GraalVM"
+  ],
+  "author": "Port done by Mark Stephen Sobkow (mark.sobkow@gmail.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/msobkow/cflib/issues"
+  },
+  "homepage": "https://github.com/msobkow/cflib#readme",
+  "dependencies": {
+    "native-image": "^0.7.0"
+  }
+}
