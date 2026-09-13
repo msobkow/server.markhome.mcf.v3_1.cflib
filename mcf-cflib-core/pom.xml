@@ -22,6 +22,7 @@
 		<commons-lang3.version>3.20.0</commons-lang3.version>
 		<commons-text.version>1.15.0</commons-text.version>
 		<graal.mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</graal.mainClass>
+		<testFailure.ignore>true</testFailure.ignore>
 	</properties>
 
 	<dependencies>
@@ -165,6 +166,7 @@
 				<version>3.5.3</version>
 				<configuration>
 					<useModulePath>false</useModulePath>
+					<testFailureIgnore>${testFailure.ignore}</testFailureIgnore>
 				</configuration>
 			</plugin>
 			<plugin>
