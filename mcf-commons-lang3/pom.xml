@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>mcf-commons-lang3</artifactId>
-  <version>3.1.42-2026091111</version>
+	<artifactId>mcf-commons-lang3</artifactId>
+	<!--version>DEFINED BY PARENT PACKAGE POM 3.1.42-2026091111</version -->
 
-  <parent>
-	<groupId>cflib</groupId>
-	<artifactId>cflib</artifactId>
-	<version>3.1.42-2026091111</version>
-  </parent>
+	<parent>
+		<groupId>cflib</groupId>
+		<artifactId>cflib</artifactId>
+		<version>3.1.42-2026091111</version>
+	</parent>
 	<name>Apache Commons Lang</name>
 <!--
  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -19,7 +19,7 @@
  (the "License"); you may not use this file except in compliance with
  the License.	You may obtain a copy of the License at
 
-			https://www.apache.org/licenses/LICENSE-2.0
+	https://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +38,7 @@
 	See https://github.com/apache/commons-lang/blob/master/.github/workflows/maven.yml
 	
 	Please ensure your build environment is up-to-date and kindly report any build issues.
-	</description>
+</description>
 	<url>https://github.com/msobkow/commons-lang3-js/</url>
 	<!-- Lang should depend on very little -->
 	<dependencies>
@@ -61,17 +61,17 @@
 		<version>${junit-jupiter.version}</version>
 			<scope>test</scope>
 		</dependency-->
-	<dependency>
-		<groupId>org.graalvm.polyglot</groupId>
-		<artifactId>polyglot</artifactId>
-		<version>${graaljs.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>org.graalvm.polyglot</groupId>
-		<artifactId>js-community</artifactId>
-		<version>${graaljs.version}</version>
-		<type>pom</type>
-	</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>polyglot</artifactId>
+			<version>${graaljs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>js-community</artifactId>
+			<version>${graaljs.version}</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>org.junit-pioneer</groupId>
 			<artifactId>junit-pioneer</artifactId>
@@ -110,18 +110,22 @@
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-	<repository>
-		<id>nexus-releases</id>
-		<name>Nexus release repository</name>
-		<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
-	</repository>
-	<snapshotRepository>
-		<id>nexus-snapshots</id>
-		<name>Nexus release repository</name>
-		<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
-	</snapshotRepository>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</snapshotRepository>
 	</distributionManagement>
 	<properties>
+		<!--DEFINED BY PARENT POM project.build.outputTimestamp>2026091111</project.build.outputTimestamp -->
+		<!-- DEFINED BY PARENT POM junit-jupiter.version>6.0.1</junit-jupiter.version -->
+		<!-- DEFINED BY PARENT POM mcf.version>3.1.42-2026091111</mcf.version -->
+		<!-- DEFINED BY PARENT POM commons.rc.version>MCFRC1</commons.rc.version -->
 		<!--maven.javadoc.skip>false</maven.javadoc.skip-->
 		<commons.javadoc.failOnWarnings>false</commons.javadoc.failOnWarnings>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
@@ -134,18 +138,16 @@
 		<argLine>${heapSize} ${extraArgs} ${systemProperties}</argLine>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<commons.rc.version>MCFRC1</commons.rc.version>
-		<project.build.outputTimestamp>2026091111</project.build.outputTimestamp>
 		<!--
-			 This is also	used to generate download_xxx file name.
-			 To override this when generating the download page:
+			This is also	used to generate download_xxx file name.
+			To override this when generating the download page:
 
-			 mvn commons:download-page -Dcommons.componentid=lang
+			mvn commons:download-page -Dcommons.componentid=lang
 
-			 The above seems to change the download page name but not any other
-			 properties that depend on the componentid.
+			The above seems to change the download page name but not any other
+			properties that depend on the componentid.
 
-			 The componentid is also used by the parent pom as part of the OSGI symbolic name.
+			The componentid is also used by the parent pom as part of the OSGI symbolic name.
 		-->
 		<commons.componentid>lang</commons.componentid>
 		<commons.packageId>lang3</commons.packageId>
@@ -174,13 +176,13 @@
 		<!-- GH CI Java 17 Ubuntu says 0.91 -->
 		<!-- Local macOS Java 21 says 0.92 -->
 		<commons.text.version>1.14.0</commons.text.version>
-	<maven-compiler.version>3.15.0</maven-compiler.version>
-	<maven-toolchains.version>3.3.0</maven-toolchains.version>
-	<!--jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version-->
-	<!--spring.version>4.0.5</spring.version-->
-	<!--mcf.version>3.1.${env.buildString}-${env.BUILD_STAMP}</mcf.version-->
-	<js.output.name>commons-lang3.js</js.output.name>
-	<!--slf4j.version>2.0.17-gov4j-1</slf4j.version-->
+		<maven-compiler.version>3.15.0</maven-compiler.version>
+		<maven-toolchains.version>3.3.0</maven-toolchains.version>
+		<!--jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version-->
+		<!--spring.version>4.0.5</spring.version-->
+		<!--mcf.version>3.1.${env.buildString}-${env.BUILD_STAMP}</mcf.version-->
+		<js.output.name>commons-lang3.js</js.output.name>
+		<!--slf4j.version>2.0.17-gov4j-1</slf4j.version-->
 	</properties>
 	<build>
 		<extensions>

@@ -7,10 +7,10 @@ public class CFLibLibraryEntry {
 	}
 
 	public static String getCFLibName() {
-		return ("cflib-core");
+		return ( CFLibLibraryEntry.getCFLibName() + "-core");
 	}
 
 	public static String getCFLibVersion() {
-		return ("3.1.42-20260911111111");
+		return ( CFLibLibraryEntry.getCFLibVersion() );
 	}
 }

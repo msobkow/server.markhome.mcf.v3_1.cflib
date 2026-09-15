@@ -1,17 +1,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>mcf-cflib-core</artifactId>
-  <version>3.1.42-2026091111</version>
-  <name>mcf-cflib-core</name>
-
-  <parent>
-	<groupId>cflib</groupId>
-	<artifactId>cflib</artifactId>
+	<artifactId>mcf-cflib-core</artifactId>
 	<version>3.1.42-2026091111</version>
-  </parent>
-	<description>Mark's Code Fractal CFLib 3.1.42 - Common Core Library</description>
-	<url>email:mark.sobkow@gmail.com</url>
+
+	<parent>
+		<groupId>cflib</groupId>
+		<artifactId>cflib</artifactId>
+		<version>3.1.42-2026091111</version>
+	</parent>
+
+	<name>mcf-cflib-core Mark's Code Fractal CFLib Core 3.1.42</name>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements. See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License. You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+	<!--SPECIFIED BY PARENT POM inceptionYear>2016</inceptionYear-->
+	<description>
+	Mark's Code Fractal CFLib Core Library 3.1.42
+
+	MCF CFLib Core is a collection of interfaces and classes which provide essential
+	functionality to MCF-based applications and services. Of particular note are
+	the keyhash classes and interfaces, the custom exceptions, and the inz implementation
+	used throughout the code base to provide internationalization support.
+
+	The code is tested using the latest revision of the JDK for supported
+	LTS releases: only 25+ currently.
+
+	Please ensure your build environment is up-to-date and kindly report any build issues.
+</description>
+	<!--url>DEFINED BY PACKAGE HIERARCHY TOP POM https://github.com/msobkow/server.markhome.mcf.v3_1.cflib/</url-->
+
+	<parent>
+		<groupId>cflib</groupId>
+		<artifactId>cflib</artifactId>
+		<version>3.1.42-2026091111</version>
+	</parent>
 
 	<properties>
 		<xerces.version>2.12.2</xerces.version>
@@ -19,13 +55,80 @@
 		<logback.version>1.5.22</logback.version>
 		<commons-codec.version>1.22.1</commons-codec.version>
 		<commons-io.version>2.22.0</commons-io.version>
-		<commons-lang3.version>3.20.0</commons-lang3.version>
+		<mcf.commons-lang3.version>${mcf.version}</mcf.commons-lang3.version>
+		<mcf.cflib-core.version>${version}</mcf.cflib-core.version>
 		<commons-text.version>1.15.0</commons-text.version>
 		<graal.mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</graal.mainClass>
 		<testFailure.ignore>true</testFailure.ignore>
 	</properties>
 
 	<dependencies>
+		<!--dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope->
+		</dependency-->
+		<!--dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency-->
+		<!-- testing -->
+		<!--dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency-->
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>polyglot</artifactId>
+			<version>${graaljs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>js-community</artifactId>
+			<version>${graaljs.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.junit-pioneer</groupId>
+			<artifactId>junit-pioneer</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>5.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- For Javadoc links -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons.text.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-core</artifactId>
+			<version>${commons.jmh.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-generator-annprocess</artifactId>
+			<version>${commons.jmh.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.2</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -41,7 +144,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>${commons-lang3.version}</version>
+			<version>${mcf.commons-lang3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -96,7 +199,6 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 	</dependencies>
-
 	<distributionManagement>
 		<repository>
 			<id>nexus-releases</id>
@@ -109,7 +211,67 @@
 			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
 		</snapshotRepository>
 	</distributionManagement>
+	<properties>
+		<!--maven.javadoc.skip>false</maven.javadoc.skip-->
+		<commons.javadoc.failOnWarnings>false</commons.javadoc.failOnWarnings>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<graal.mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</graal.mainClass>
+		<graal.nativeimage-kind>shared</graal.nativeimage-kind>
+		<commons.javadoc.version>3.12.0</commons.javadoc.version>
+		<heapSize>-Xmx1024m</heapSize>
+		<extraArgs/>
+		<systemProperties/>
+		<argLine>${heapSize} ${extraArgs} ${systemProperties}</argLine>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<commons.rc.version>MCFRC1</commons.rc.version>
+		<project.build.outputTimestamp>2026091111</project.build.outputTimestamp>
+		<!--
+			This is also	used to generate download_xxx file name.
+			To override this when generating the download page:
 
+			mvn commons:download-page -Dcommons.componentid=lang
+
+			The above seems to change the download page name but not any other
+			properties that depend on the componentid.
+
+			The componentid is also used by the parent pom as part of the OSGI symbolic name.
+		-->
+		<commons.componentid>lang</commons.componentid>
+		<commons.packageId>lang3</commons.packageId>
+		<commons.module.name>org.apache.commons.lang3</commons.module.name>
+		<!-- Current 3.x release series -->
+		<commons.release.version>3.20.0</commons.release.version>
+		<commons.release.next>3.20.1</commons.release.next>
+		<commons.release.desc>(Java 8+)</commons.release.desc>
+		<!-- Previous 2.x release series -->
+		<commons.release.2.version>2.6</commons.release.2.version>
+		<commons.release.2.desc>(Requires Java 1.2 or later)</commons.release.2.desc>
+		<!-- Override generated name -->
+		<commons.release.2.name>commons-lang-${commons.release.2.version}</commons.release.2.name>
+		<commons.jira.id>LANG</commons.jira.id>
+		<commons.jira.pid>12310481</commons.jira.pid>
+		<commons.site.path>lang</commons.site.path>
+		<commons.scmPubCheckoutDirectory>site-content</commons.scmPubCheckoutDirectory>
+		<commons.encoding>UTF-8</commons.encoding>
+		<checkstyle.configdir>src/site/resources/checkstyle</checkstyle.configdir>
+		<japicmp.skip>false</japicmp.skip>
+		<!--uberjar.name>benchmarks</uberjar.name-->
+		<!-- Commons Release Plugin -->
+		<commons.bc.version>3.19.0</commons.bc.version>
+		<commons.release.isDistModule>true</commons.release.isDistModule>
+		<!--commons.distSvnStagingUrl>scm:svn:https://dist.apache.org/repos/dist/dev/commons/lang</commons.distSvnStagingUrl-->
+		<!-- GH CI Java 17 Ubuntu says 0.91 -->
+		<!-- Local macOS Java 21 says 0.92 -->
+		<commons.text.version>1.14.0</commons.text.version>
+		<maven-compiler.version>3.15.0</maven-compiler.version>
+		<maven-toolchains.version>3.3.0</maven-toolchains.version>
+		<!--jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version-->
+		<!--spring.version>4.0.5</spring.version-->
+		<!--mcf.version>3.1.${env.buildString}-${env.BUILD_STAMP}</mcf.version-->
+		<js.output.name>commons-lang3.js</js.output.name>
+		<!--slf4j.version>2.0.17-gov4j-1</slf4j.version-->
+	</properties>
 	<build>
 		<extensions>
 			<extension>
@@ -118,142 +280,929 @@
 				<version>1.0-beta-6</version>
 			</extension>
 		</extensions>
-		<plugins>
-          <plugin>
-              <groupId>org.spdx</groupId>
-              <artifactId>spdx-maven-plugin</artifactId>
-              <version>${commons.spdx.version}</version>
-              <executions>
-                  <execution>
-                      <id>build-sbom-spdx</id>
-                      <phase>package</phase>
-                      <goals>
-                          <goal>createSPDX</goal>
-                      </goals>
-                 </execution>
-             </executions>
-         </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>3.1.4</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.5.1</version>
-				<executions>
-					<execution>
-						<id>default-deploy</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<serverId>nexus</serverId>
-					<nexusUrl>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</nexusUrl>
-					<skipStaging>true</skipStaging>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.3</version>
-				<configuration>
-					<useModulePath>false</useModulePath>
-					<testFailureIgnore>${testFailure.ignore}</testFailureIgnore>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<executable>export PATH=${env.JAVA_JDK_HOME}/bin:${env.JAVA_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.JAVA_JDK_HOME} &amp;&amp; export JDK_HOME={env.JAVA_JDK_HOME} &amp;&amp; javac </executable>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>25</version>
-							<vendor>openjdk</vendor>
-						</jdk>
-						<jdk>
-							<version>graalvm-ce-25</version>
-							<vendor>graalvm.org</vendor>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.graalvm.buildtools</groupId>
-				<artifactId>native-maven-plugin</artifactId>
-				<version>${graalvm-buildtools.version}</version>
-				<extensions>true</extensions>
-				<executions>
-					<execution>
-						<id>build-native</id>
-						<goals>
-							<goal>compile-no-fork</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<executable>export PATH=${env.GRAAL_JDK_HOME}/bin:${env.GRAAL_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export GRAALVM_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JAVA_HOME=${env.GRAAL_JDK_HOME} &amp;&amp; export JDK_HOME={env.GRAAL_JDK_HOME} &amp;&amp; native-image </executable>
-					<mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</mainClass>
-					<buildArgs>
-						<buildArg>-g</buildArg>
-						<!--buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg-->
-						<!--buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg-->
-						<!--buildArg>&#45;&#45;exact-reachability-metadata</buildArg-->
-						<!--buildArg>&#45;&#45;future-defaults</buildArg-->
-						<!--buildArg>&#45;&#45;implicit:class</buildArg-->
-						<buildArg>&#45;H:Preserve=all</buildArg>
-						<buildArg>-o ${project.build.directory}/js/${js.output.name}</buildArg>
-					</buildArgs>
-				</configuration>
-			</plugin>
-		</plugins>
+		<defaultGoal>clean verify apache-rat:check checkstyle:check japicmp:cmp spotbugs:check pmd:check maven-exec-plugin:jar maven-exec-plugin:test-jar</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-toolchains-plugin</artifactId>
+					<version>${maven-toolchains.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>toolchain</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<toolchains>
+							<jdk>
+								<version>25-lts</version>
+								<vendor>adoptium</vendor>
+							</jdk>
+						</toolchains>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.1.4</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.5.1</version>
+					<executions>
+						<execution>
+							<id>default-deploy</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<serverId>nexus</serverId>
+						<nexusUrl>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</nexusUrl>
+						<skipStaging>true</skipStaging>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${commons.compiler.version}</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+						<encoding>${commons.encoding}</encoding>
+						<!--
+							fork is set true by the java-1.x profiles
+							This allows the use of a different version of the compiler from the
+							JDK being used to run Maven
+						-->
+						<fork>${commons.compiler.fork}</fork>
+						<!-- the following are only needed if fork is true -->
+						<compilerVersion>${commons.compiler.compilerVersion}</compilerVersion>
+						<executable>${commons.compiler.javac}</executable>
+						<compilerArgs>
+							<!-- Disable annotation processing during compile -->
+							<!-- Background: https://www.oracle.com/java/technologies/javase/23-relnote-issues.html#JDK-8321314 -->
+							<!-- Background: https://xdev.software/en/news/detail/discovering-the-perfect-java-supply-chain-attack-vector-and-how-it-got-fixed -->
+							<arg>-proc:none</arg>
+						</compilerArgs>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>${commons.pmd.version}</version>
+					<configuration>
+						<targetJdk>${maven.compiler.target}</targetJdk>
+						<excludeFromFailureFile>src/conf/pmd-exclude.properties</excludeFromFailureFile>
+						<rulesets>
+							<ruleset>src/conf/pmd-ruleset.xml</ruleset>
+						</rulesets>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.rat</groupId>
+					<artifactId>apache-rat-plugin</artifactId>
+					<version>${commons.rat.version}</version>
+					<configuration>
+						<counterMax>Unapproved:9999</counterMax>
+						<inputExclude>site-content/** src/site/resources/.htaccess src/site/resources/download_lang.cgi src/site/resources/release-notes/RELEASE-NOTES-*.txt src/test/resources/lang-708-input.txt **/*.svg */*.xcf</inputExclude>
+							<!--exclude>site-content/**</exclude>
+							<exclude>src/site/resources/.htaccess</exclude>
+							<exclude>src/site/resources/download_lang.cgi</exclude>
+							<exclude>src/site/resources/release-notes/RELEASE-NOTES-*.txt</exclude>
+							<exclude>src/test/resources/lang-708-input.txt</exclude>
+							<exclude>**/*.svg</exclude>
+							<exclude>**/*.xcf</exclude-->
+					</configuration>
+				</plugin>
+				<!--plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-publish-plugin</artifactId>
+					<configuration>
+						<ignorePathsToDelete>
+							<ignorePathToDelete>javadocs</ignorePathToDelete>
+						</ignorePathsToDelete>
+					</configuration>
+				</plugin-->
+				<plugin>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<configuration>
+						<configLocation>${checkstyle.configdir}/checkstyle.xml</configLocation>
+						<includeTestSourceDirectory>true</includeTestSourceDirectory>
+						<enableRulesSummary>false</enableRulesSummary>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.github.spotbugs</groupId>
+					<artifactId>spotbugs-maven-plugin</artifactId>
+					<configuration>
+						<excludeFilterFile>${basedir}/src/conf/spotbugs-exclude-filter.xml</excludeFilterFile>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.graalvm.buildtools</groupId>
+					<artifactId>native-maven-plugin</artifactId>
+					<version>${graalvm-buildtools.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<mainClass>${graal.mainClass}</mainClass>
+						<skipNativeBuildForPom>true</skipNativeBuildForPom>
+						<debug>true</debug>
+						<extensions>true</extensions>
+						<buildArgs>
+							<!--buildArg>-g</buildArg-->
+							<!--buildArg>&#45;&#45;enable-monitoring=heapdump,jfr,jvmstat,jmxserver,jmxclient,threaddump,nmt,jccmd</buildArg-->
+							<!--buildArg>&#45;&#45;enable-native-access=ALL-UNNAMED</buildArg-->
+							<!--buildArg>&#45;&#45;exact-reachability-metadata</buildArg-->
+							<!--buildArg>&#45;&#45;future-defaults</buildArg-->
+							<!--buildArg>&#45;&#45;implicit:class</buildArg-->
+							<!--buildArg>&#45;&#45;shared</buildArg-->
+							<buildArg>&#45;H:+UnlockExperimentalVMOptions</buildArg>
+							<buildArg>&#45;H:Preserve=package=org.apache.commons.lang3*</buildArg>
+							<buildArg>&#45;&#45;language:js</buildArg>
+						</buildArgs>
+					</configuration>
+					<executions>
+						<execution>
+							<id>build-native</id>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+							<phase>compile</phase>
+							<configuration>
+								<!--executable>export PATH=${env.GV_HOME}/bin:${env.GV_HOME}/lib:${env.BASE_PATH} &amp;&amp; export GRAALVM_HOME=${env.GV_HOME} &amp;&amp; export JAVA_HOME=${env.GV_HOME} &amp;&amp; export JDK_HOME={env.GV_HOME} &amp;&amp; native-image -Dgraal.CompilerConfiguration=none </executable-->
+								<environmentVariables>
+									<NATIVE_IMAGE_OPTIONS>-Dgraal.CompilerConfiguration=none </NATIVE_IMAGE_OPTIONS>
+									<org.graalvm.nativeimage.kind>${graal.nativeimage-kind}</org.graalvm.nativeimage.kind>
+									<project.build.directory>${project.basedir}/src/main/js/</project.build.directory>
+								</environmentVariables>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>com.github.rudikershaw</groupId>
+					<artifactId>remove-attached-artifact-maven-plugin</artifactId>
+					<version>1.0.1</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>remove-attachments</goal>
+							</goals>
+							<configuration>
+								<!-- Deregister the standard artifact to make room for your replacement -->
+								<artifactIds>
+									<artifactId>${project.groupId}:${project.artifactId}:jar:${project.version}</artifactId>
+									<artifactId>${project.groupId}:${project.artifactId}-test:jar:${project.version}</artifactId>
+								</artifactIds>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${commons.jar-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>default-jar</id>
+							<phase>none</phase>
+						</execution>
+						<execution>
+							<id>test-jar</id>
+							<phase>none</phase>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>3.6.3</version>
+					<executions>
+						<execution>
+							<id>default-jar</id>
+							<phase>package</phase>
+							<configuration>
+								<!-- Use the system java executable -->
+								<executable>${env.JV_HOME}/bin/jar</executable>
+								<includes>
+									<include>**/*.class</include>
+									<include>**/META-INF/*</include>
+									<include>**/META-INF/**/*</include>
+								</includes>
+								<excludes>
+									<exclude>**/*Test.class</exclude>
+								</excludes>
+								<arguments>
+									<argument>cf ${project.basedir}/target/${artifactId}-${version}.jar</argument>
+								</arguments>
+							</configuration>
+						</execution>
+						<execution>
+							<id>test-jar</id>
+							<phase>package</phase>
+							<configuration>
+								<!-- Use the system java executable -->
+								<executable>${env.JV_HOME}/bin/jar</executable>
+								<includes>
+									<include>**/*Test.class</include>
+									<include>**/META-INF/*</include>
+									<include>**/META-INF/**/*</include>
+								</includes>
+								<arguments>
+									<argument>cf ${project.basedir}/target/${artifactId}-${version}-test.jar</argument>
+								</arguments>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
-
 	<reporting>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.3</version>
+				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<skipTests>false</skipTests>
-					<useSystemClassLoader>true</useSystemClassLoader>
+					<configLocation>${checkstyle.configdir}/checkstyle.xml</configLocation>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<enableRulesSummary>false</enableRulesSummary>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- Requires setting 'export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m" ' -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<configuration>
+					<excludeFilterFile>${basedir}/src/conf/spotbugs-exclude-filter.xml</excludeFilterFile>
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<configuration>
+					<tagListOptions>
+						<tagClasses>
+							<tagClass>
+								<displayName>Needs Work</displayName>
+								<tags>
+									<tag>
+										<matchString>TODO</matchString>
+										<matchType>exact</matchType>
+									</tag>
+									<tag>
+										<matchString>FIXME</matchString>
+										<matchType>exact</matchType>
+									</tag>
+									<tag>
+										<matchString>XXX</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+							<tagClass>
+								<displayName>Noteable Markers</displayName>
+								<tags>
+									<tag>
+										<matchString>NOTE</matchString>
+										<matchType>exact</matchType>
+									</tag>
+									<tag>
+										<matchString>NOPMD</matchString>
+										<matchType>exact</matchType>
+									</tag>
+									<tag>
+										<matchString>NOSONAR</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+						</tagClasses>
+					</tagListOptions>
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
+	<profiles>
+		<profile>
+			<id>setup-checkout</id>
+			<activation>
+				<file>
+					<missing>site-content</missing>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>prepare-checkout</id>
+								<phase>pre-site</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<exec executable="svn">
+											<arg line="checkout --depth immediates ${commons.scmPubUrl} ${commons.scmPubCheckoutDirectory}" />
+										</exec>
+										<exec executable="svn">
+											<arg line="update --set-depth exclude ${commons.scmPubCheckoutDirectory}/javadocs" />
+										</exec>
+										<pathconvert pathsep=" " property="dirs">
+											<dirset dir="${commons.scmPubCheckoutDirectory}" includes="*" />
+										</pathconvert>
+										<exec executable="svn">
+											<arg line="update --set-depth infinity ${dirs}" />
+										</exec>
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<!--
+					This is the complete profile, it builds everything including 
+					any building modules, javadoc and the distribution packages.
+			-->
+			<id>complete</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>profile.complete</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${commons.javadoc.version}</version>
+						<configuration>						
+							<quiet>true</quiet>
+							<source>${maven.compiler.source}</source>
+							<javadocExecutable>${commons.compiler.javadoc}</javadocExecutable>
+							<encoding>${commons.encoding}</encoding>
+							<docencoding>${commons.docEncoding}</docencoding>
+							<notimestamp>true</notimestamp>
+							<linksource>true</linksource>
+							<links>
+								<link>${commons.javadoc.javaee.link}</link>
+							</links>
+							<additionalOptions>${commons.javadoc.options}</additionalOptions>
+							<bottom>
+								Copyright © {inceptionYear}-{currentYear} {organizationName}. All rights reserved.&lt;/br&gt;
+								&lt;a href="${project.url}">${project.name}&lt;/a&gt; |&#160;
+								&lt;a href="${project.issueManagement.url}">Issue management&lt;/a&gt; |&#160;
+								&lt;a href="${project.scm.url}">Source repository&lt;/a&gt;
+							</bottom>
+							<failOnWarnings>${commons.javadoc.failOnWarnings}</failOnWarnings>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>benchmark</id>
+			<properties>
+				<skipTests>true</skipTests>
+				<benchmark>org.apache</benchmark>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>benchmark</id>
+								<phase>test</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<classpathScope>test</classpathScope>
+									<executable>java</executable>
+									<arguments>
+										<argument>-classpath</argument>
+										<classpath/>
+										<argument>org.openjdk.jmh.Main</argument>
+										<argument>-rf</argument>
+										<argument>json</argument>
+										<argument>-rff</argument>
+										<argument>target/jmh-result.${benchmark}.json</argument>
+										<argument>${benchmark}</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>largeheap</id>
+			<properties>
+				<heapSize>-Xmx1024m</heapSize>
+				<systemProperties>-Dtest.large.heap=true</systemProperties>
+			</properties>
+		</profile>
+	</profiles>
+	<developers>
+		<developer>
+			<name>Daniel Rall</name>
+			<id>dlr</id>
+			<email>dlr@finemaltcoding.com</email>
+			<organization>CollabNet, Inc.</organization>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Stephen Colebourne</name>
+			<id>scolebourne</id>
+			<email>scolebourne@joda.org</email>
+			<organization>SITA ATS Ltd</organization>
+			<timezone>0</timezone>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Henri Yandell</name>
+			<id>bayard</id>
+			<email>bayard@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Steven Caswell</name>
+			<id>scaswell</id>
+			<email>stevencaswell@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>-5</timezone>
+		</developer>
+		<developer>
+			<name>Robert Burrell Donkin</name>
+			<id>rdonkin</id>
+			<email>rdonkin@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>ggregory</id>
+			<name>Gary Gregory</name>
+			<email>ggregory at apache.org</email>
+			<url>https://www.garygregory.com</url>
+			<organization>The Apache Software Foundation</organization>
+			<organizationUrl>https://www.apache.org/</organizationUrl>
+			<roles>
+				<role>PMC Member</role>
+			</roles>
+			<timezone>America/New_York</timezone>
+			<properties>
+				<picUrl>https://people.apache.org/~ggregory/img/garydgregory80.png</picUrl>
+			</properties>
+		</developer>
+		<developer>
+			<name>Fredrik Westermarck</name>
+			<id>fredrik</id>
+			<email />
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>James Carman</name>
+			<id>jcarman</id>
+			<email>jcarman@apache.org</email>
+			<organization>Carman Consulting, Inc.</organization>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Niall Pemberton</name>
+			<id>niallp</id>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Matt Benson</name>
+			<id>mbenson</id>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Joerg Schaible</name>
+			<id>joehni</id>
+			<email>joerg.schaible@gmx.de</email>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<name>Oliver Heger</name>
+			<id>oheger</id>
+			<email>oheger@apache.org</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Paul Benedict</name>
+			<id>pbenedict</id>
+			<email>pbenedict@apache.org</email>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Benedikt Ritter</name>
+			<id>britter</id>
+			<email>britter@apache.org</email>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Duncan Jones</name>
+			<id>djones</id>
+			<email>djones@apache.org</email>
+			<timezone>0</timezone>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Loic Guibert</name>
+			<id>lguibert</id>
+			<email>lguibert@apache.org</email>
+			<timezone>+4</timezone>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Rob Tompkins</name>
+			<id>chtompki</id>
+			<email>chtompki@apache.org</email>
+			<timezone>-5</timezone>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>C. Scott Ananian</name>
+		</contributor>
+		<contributor>
+			<name>Chris Audley</name>
+		</contributor>
+		<contributor>
+			<name>Stephane Bailliez</name>
+		</contributor>
+		<contributor>
+			<name>Michael Becke</name>
+		</contributor>
+		<contributor>
+			<name>Benjamin Bentmann</name>
+		</contributor>
+		<contributor>
+			<name>Ola Berg</name>
+		</contributor>
+		<contributor>
+			<name>Nathan Beyer</name>
+		</contributor>
+		<contributor>
+			<name>Stefan Bodewig</name>
+		</contributor>
+		<contributor>
+			<name>Janek Bogucki</name>
+		</contributor>
+		<contributor>
+			<name>Mike Bowler</name>
+		</contributor>
+		<contributor>
+			<name>Sean Brown</name>
+		</contributor>
+		<contributor>
+			<name>Alexander Day Chaffee</name>
+		</contributor>
+		<contributor>
+			<name>Al Chou</name>
+		</contributor>
+		<contributor>
+			<name>Greg Coladonato</name>
+		</contributor>
+		<contributor>
+			<name>Maarten Coene</name>
+		</contributor>
+		<contributor>
+			<name>Justin Couch</name>
+		</contributor>
+		<contributor>
+			<name>Michael Davey</name>
+		</contributor>
+		<contributor>
+			<name>Norm Deane</name>
+		</contributor>
+		<contributor>
+			<name>Morgan Delagrange</name>
+		</contributor>
+		<contributor>
+			<name>Ringo De Smet</name>
+		</contributor>
+		<contributor>
+			<name>Russel Dittmar</name>
+		</contributor>
+		<contributor>
+			<name>Steve Downey</name>
+		</contributor>
+		<contributor>
+			<name>Matthias Eichel</name>
+		</contributor>
+		<contributor>
+			<name>Christopher Elkins</name>
+		</contributor>
+		<contributor>
+			<name>Chris Feldhacker</name>
+		</contributor>
+		<contributor>
+			<name>Roland Foerther</name>
+		</contributor>
+		<contributor>
+			<name>Pete Gieser</name>
+		</contributor>
+		<contributor>
+			<name>Jason Gritman</name>
+		</contributor>
+		<contributor>
+			<name>Matthew Hawthorne</name>
+		</contributor>
+		<contributor>
+			<name>Michael Heuer</name>
+		</contributor>
+		<contributor>
+			<name>Chas Honton</name>
+		</contributor>
+		<contributor>
+			<name>Chris Hyzer</name>
+		</contributor>
+		<contributor>
+			<name>Paul Jack</name>
+		</contributor>
+		<contributor>
+			<name>Marc Johnson</name>
+		</contributor>
+		<contributor>
+			<name>Shaun Kalley</name>
+		</contributor>
+		<contributor>
+			<name>Tetsuya Kaneuchi</name>
+		</contributor>
+		<contributor>
+			<name>Nissim Karpenstein</name>
+		</contributor>
+		<contributor>
+			<name>Ed Korthof</name>
+		</contributor>
+		<contributor>
+			<name>Holger Krauth</name>
+		</contributor>
+		<contributor>
+			<name>Rafal Krupinski</name>
+		</contributor>
+		<contributor>
+			<name>Rafal Krzewski</name>
+		</contributor>
+		<contributor>
+			<name>David Leppik</name>
+		</contributor>
+		<contributor>
+			<name>Eli Lindsey</name>
+		</contributor>
+		<contributor>
+			<name>Sven Ludwig</name>
+		</contributor>
+		<contributor>
+			<name>Craig R. McClanahan</name>
+		</contributor>
+		<contributor>
+			<name>Rand McNeely</name>
+		</contributor>
+		<contributor>
+			<name>Hendrik Maryns</name>
+		</contributor>
+		<contributor>
+			<name>Dave Meikle</name>
+		</contributor>
+		<contributor>
+			<name>Nikolay Metchev</name>
+		</contributor>
+		<contributor>
+			<name>Kasper Nielsen</name>
+		</contributor>
+		<contributor>
+			<name>Tim O'Brien</name>
+		</contributor>
+		<contributor>
+			<name>Brian S O'Neill</name>
+		</contributor>
+		<contributor>
+			<name>Andrew C. Oliver</name>
+		</contributor>
+		<contributor>
+			<name>Alban Peignier</name>
+		</contributor>
+		<contributor>
+			<name>Moritz Petersen</name>
+		</contributor>
+		<contributor>
+			<name>Dmitri Plotnikov</name>
+		</contributor>
+		<contributor>
+			<name>Neeme Praks</name>
+		</contributor>
+		<contributor>
+			<name>Eric Pugh</name>
+		</contributor>
+		<contributor>
+			<name>Stephen Putman</name>
+		</contributor>
+		<contributor>
+			<name>Travis Reeder</name>
+		</contributor>
+		<contributor>
+			<name>Antony Riley</name>
+		</contributor>
+		<contributor>
+			<name>Valentin Rocher</name>
+		</contributor>
+		<contributor>
+			<name>Scott Sanders</name>
+		</contributor>
+		<contributor>
+			<name>James Sawle</name>
+		</contributor>
+		<contributor>
+			<name>Ralph Schaer</name>
+		</contributor>
+		<contributor>
+			<name>Henning P. Schmiedehausen</name>
+		</contributor>
+		<contributor>
+			<name>Sean Schofield</name>
+		</contributor>
+		<contributor>
+			<name>Robert Scholte</name>
+		</contributor>
+		<contributor>
+			<name>Reuben Sivan</name>
+		</contributor>
+		<contributor>
+			<name>Ville Skytta</name>
+		</contributor>
+		<contributor>
+			<name>David M. Sledge</name>
+		</contributor>
+		<contributor>
+			<name>Michael A. Smith</name>
+		</contributor>
+		<contributor>
+			<name>Jan Sorensen</name>
+		</contributor>
+		<contributor>
+			<name>Glen Stampoultzis</name>
+		</contributor>
+		<contributor>
+			<name>Scott Stanchfield</name>
+		</contributor>
+		<contributor>
+			<name>Jon S. Stevens</name>
+		</contributor>
+		<contributor>
+			<name>Sean C. Sullivan</name>
+		</contributor>
+		<contributor>
+			<name>Ashwin Suresh</name>
+		</contributor>
+		<contributor>
+			<name>Helge Tesgaard</name>
+		</contributor>
+		<contributor>
+			<name>Arun Mammen Thomas</name>
+		</contributor>
+		<contributor>
+			<name>Masato Tezuka</name>
+		</contributor>
+		<contributor>
+			<name>Daniel Trebbien</name>
+		</contributor>
+		<contributor>
+			<name>Jeff Varszegi</name>
+		</contributor>
+		<contributor>
+			<name>Chris Webb</name>
+		</contributor>
+		<contributor>
+			<name>Mario Winterer</name>
+		</contributor>
+		<contributor>
+			<name>Stepan Koltsov</name>
+		</contributor>
+		<contributor>
+			<name>Holger Hoffstatte</name>
+		</contributor>
+		<contributor>
+			<name>Derek C. Ashmore</name>
+		</contributor>
+		<contributor>
+			<name>Sebastien Riou</name>
+		</contributor>
+		<contributor>
+			<name>Allon Mureinik</name>
+		</contributor>
+		<contributor>
+			<name>Adam Hooper</name>
+		</contributor>
+		<contributor>
+			<name>Chris Karcher</name>
+		</contributor>
+		<contributor>
+			<name>Michael Osipov</name>
+		</contributor>
+		<contributor>
+			<name>Thiago Andrade</name>
+		</contributor>
+		<contributor>
+			<name>Jonathan Baker</name>
+		</contributor>
+		<contributor>
+			<name>Mikhail Mazursky</name>
+		</contributor>
+		<contributor>
+			<name>Fabian Lange</name>
+		</contributor>
+		<contributor>
+			<name>Michał Kordas</name>
+		</contributor>
+		<contributor>
+			<name>Felipe Adorno</name>
+		</contributor>
+		<contributor>
+			<name>Adrian Ber</name>
+		</contributor>
+		<contributor>
+			<name>Mark Dacek</name>
+		</contributor>
+		<contributor>
+			<name>Peter Verhas</name>
+		</contributor>
+		<contributor>
+			<name>Jin Xu</name>
+		</contributor>
+		<contributor>
+			<name>Arturo Bernal</name>
+		</contributor>
+	</contributors>
 </project>

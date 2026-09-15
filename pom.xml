@@ -7,97 +7,199 @@
 	</parent>
 <!--
 -->
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <name>MCF 3.1 CFLib </name>
-  <groupId>cflib</groupId>
-  <artifactId>cflib</artifactId>
-  <packaging>pom</packaging>
-  <url>https://server.markhome.mcf.v3_1.cflib/</url>
-  <version>3.1.42-2026091111</version>
+	<name>mcf-cflib Mark's Code Fractal CFLib 3.1.42</name>
+	<groupId>cflib</groupId>
+	<artifactId>cflib</artifactId>
+	<packaging>pom</packaging>
+	<url>https://github.com/msobkow/server.markhome.mcf.v3_1.cflib/</url>
+	<version>3.1.42-2026091111</version>
 
-  <properties>
-    <project.build.outputTimestamp>2026091111</project.build.outputTimestamp>
-	<junit-jupiter.version>6.0.1</junit-jupiter.version>
-  </properties>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.	See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.	You may obtain a copy of the License at
 
-  <profiles>
-    <profile>
-      <!--
-          This is the dev profile, typically used locally with
-          "mvn clean install -Pdev".
-          It builds the modules shipped in apache-jena binaries
-          but does not build these binaries.
-          This profile does not build javadoc.
-          This profile does not check license headers.
-      -->
-      <id>dev</id>
+	https://www.apache.org/licenses/LICENSE-2.0
 
-      <properties>
-        <rat.skip>true</rat.skip>
-      </properties>
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+	<inceptionYear>2016</inceptionYear>
 
-      <modules>
+	<description>
+	MCF CFLib is a collection of packages and libraries used throughout the MCF application
+	environnment to provide essential functionality for their implementation.  Pay particular
+	attention to mcf-cflib-core, which provides the vast majority of the essential functionality,
+	with mcf-cflib-dbutil providing JPA database specializations of data interfaces for use when
+	defining database persistence immplementations.
+
+	The code is tested using the latest revision of the JDK for supported
+	LTS releases: only 25+ currently.
+
+	Please ensure your build environment is up-to-date and kindly report any build issues.
+	</description>
+
+	<properties>
+		<project.build.outputTimestamp>2026091111</project.build.outputTimestamp>
+		<junit-jupiter.version>6.0.1</junit-jupiter.version>
+		<mcf.version>3.1.42-2026091111</mcf.version>
+		<commons.rc.version>MCFRC1</commons.rc.version>
+		<!-- By default, produce documentation -->
+		<maven.javadoc.skip>false</maven.javadoc.skip>
+		<!-- By default, do not fail javadoc on warnings -->
+		<commons.javadoc.failOnWarnings>false</commons.javadoc.failOnWarnings>
+		<!-- By default, do not ignore test failures. This may need to be overriden if implementation packages reference threading services -->
+		<maven.test.failure.ignore>false</maven.test.failure.ignore>
+		<graal.mainClass>server.markhome.mcf.v3_1.cflib.CFLibLibraryEntry</graal.mainClass>
+		<graal.nativeimage-kind>shared</graal.nativeimage-kind>
+		<commons.javadoc.version>3.12.0</commons.javadoc.version>
+		<heapSize>-Xmx1024m</heapSize>
+		<extraArgs/>
+		<systemProperties/>
+		<argLine>${heapSize} ${extraArgs} ${systemProperties}</argLine>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<commons.rc.version>MCFRC1</commons.rc.version>
+		<project.build.outputTimestamp>2026091111</project.build.outputTimestamp>
+		<!--
+			This is also	used to generate download_xxx file name.
+			To override this when generating the download page:
+
+			mvn commons:download-page -Dcommons.componentid=lang
+
+			The above seems to change the download page name but not any other
+			properties that depend on the componentid.
+
+			The componentid is also used by the parent pom as part of the OSGI symbolic name.
+		-->
+		<commons.componentid>lang</commons.componentid>
+		<commons.packageId>lang3</commons.packageId>
+		<commons.module.name>org.apache.commons.lang3</commons.module.name>
+		<!-- Current 3.x release series -->
+		<commons.release.version>3.20.0</commons.release.version>
+		<commons.release.next>3.20.1</commons.release.next>
+		<commons.release.desc>(Java 8+)</commons.release.desc>
+		<!-- Previous 2.x release series -->
+		<commons.release.2.version>2.6</commons.release.2.version>
+		<commons.release.2.desc>(Requires Java 1.2 or later)</commons.release.2.desc>
+		<!-- Override generated name -->
+		<commons.release.2.name>commons-lang-${commons.release.2.version}</commons.release.2.name>
+		<commons.jira.id>LANG</commons.jira.id>
+		<commons.jira.pid>12310481</commons.jira.pid>
+		<commons.site.path>lang</commons.site.path>
+		<commons.scmPubCheckoutDirectory>site-content</commons.scmPubCheckoutDirectory>
+		<commons.encoding>UTF-8</commons.encoding>
+		<checkstyle.configdir>src/site/resources/checkstyle</checkstyle.configdir>
+		<japicmp.skip>false</japicmp.skip>
+		<!--uberjar.name>benchmarks</uberjar.name-->
+		<!-- Commons Release Plugin -->
+		<commons.bc.version>3.19.0</commons.bc.version>
+		<commons.release.isDistModule>true</commons.release.isDistModule>
+		<!--commons.distSvnStagingUrl>scm:svn:https://dist.apache.org/repos/dist/dev/commons/lang</commons.distSvnStagingUrl-->
+		<!-- GH CI Java 17 Ubuntu says 0.91 -->
+		<!-- Local macOS Java 21 says 0.92 -->
+		<commons.text.version>1.14.0</commons.text.version>
+		<maven-compiler.version>3.15.0</maven-compiler.version>
+		<maven-toolchains.version>3.3.0</maven-toolchains.version>
+		<!--jaxb-api.version>2.4.0-b180725.0427</jaxb-api.version-->
+		<!--spring.version>4.0.5</spring.version-->
+		<!--mcf.version>3.1.${env.buildString}-${env.BUILD_STAMP}</mcf.version-->
+		<js.output.name>commons-lang3.js</js.output.name>
+		<!--slf4j.version>2.0.17-gov4j-1</slf4j.version-->
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://apache.org</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<profiles>
+	<profile>
+	<!--
+		This is the dev profile, typically used locally with
+		"mvn clean install -Pdev".
+		It builds the modules shipped in apache-jena binaries
+		but does not build these binaries.
+		This profile does not build javadoc.
+		This profile does not check license headers.
+	-->
+	<id>dev</id>
+
+	<properties>
+		<rat.skip>true</rat.skip>
+	</properties>
+
+	<modules>
 		<module>mcf-commons-lang3</module>
-        <module>mcf-cflib-core</module>
-      </modules>
+		<module>mcf-cflib-core</module>
+	</modules>
 
-      <build>
-        <plugins>
-          <!-- For -Pdev :: don't create javadoc. -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
+	<build>
+		<plugins>
+		<!-- For -Pdev :: don't create javadoc. -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<configuration>
+			<skip>true</skip>
+			</configuration>
+		</plugin>
+		</plugins>
+	</build>
 
-    </profile>
+	</profile>
 
-    <profile>
-      <!--
-          This is the complete profile, it builds everything including 
-          any building modules, javadoc and the distribution packages.
-      -->
-      <id>complete</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-        <property>
-          <name>profile.complete</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <modules>
+	<profile>
+	<!--
+		This is the complete profile, it builds everything including 
+		any building modules, javadoc and the distribution packages.
+	-->
+	<id>complete</id>
+	<activation>
+		<activeByDefault>true</activeByDefault>
+		<property>
+		<name>profile.complete</name>
+		<value>true</value>
+		</property>
+	</activation>
+	<modules>
 		<module>commons-lang3</module>
-        <module>cflib-core</module>
-      </modules>
-      <build>
-      </build>
-    </profile>
+		<module>cflib-core</module>
+	</modules>
+	<build>
+	</build>
+	</profile>
 
-  </profiles>
+	</profiles>
 
-  <dependencyManagement>
-    <dependencies>
-    </dependencies>
-  </dependencyManagement>
+	<dependencyManagement>
+	<dependencies>
+	</dependencies>
+	</dependencyManagement>
 
-  <build>
-    <defaultGoal>clean test install</defaultGoal>
-    <plugins>
-    </plugins>
+	<build>
+	<defaultGoal>clean test install</defaultGoal>
+	<plugins>
+	</plugins>
 
-  </build>
+	</build>
 
-  <reporting>
-    <!-- <outputDirectory>${project.build.directory}/site</outputDirectory> -->
+	<reporting>
+	<!-- <outputDirectory>${project.build.directory}/site</outputDirectory> -->
 
-    <plugins>
+	<plugins>
 
-    </plugins>
-  </reporting>
+	</plugins>
+	</reporting>
 
 </project>
