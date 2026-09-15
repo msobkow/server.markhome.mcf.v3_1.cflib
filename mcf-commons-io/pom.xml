@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>server.markhome.mcf</groupId>
+			<artifactId>server.markhome.mcf.v3_1</artifactId>
+		<version>3.1.42-2026-09-11-11:11:11Z</version>
+	</parent>
+	<groupId>server.markhome.mcf.v3_1</groupId>
+<!--
+	 Licensed to the Apache Software Foundation (ASF) under one or more
+	 contributor license agreements.	See the NOTICE file distributed with
+	 this work for additional information regarding copyright ownership.
+	 The ASF licenses this file to You under the Apache License, Version 2.0
+	 (the "License"); you may not use this file except in compliance with
+	 the License.	You may obtain a copy of the License at
+
+			 https://www.apache.org/licenses/LICENSE-2.0
+
+	 Unless required by applicable law or agreed to in writing, software
+	 distributed under the License is distributed on an "AS IS" BASIS,
+	 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 See the License for the specific language governing permissions and
+	 limitations under the License.
+-->
+	<artifactId>commons-io</artifactId>
+	<version>3.1.42-2026-09-11-11:11:11Z</version>
+	<name>Apache Commons IO</name>
+	<inceptionYear>2002</inceptionYear>
+	<description>
+The Apache Commons IO library contains utility classes, stream implementations, file filters,
+file comparators, endian transformation classes, and much more.
+	</description>
+	<url>https://msobkow.github.io/commons-io-js/</url>
+	<issueManagement>
+		<url>https://issues.apache.org/jira/browse/IO</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:https://github.com/msobkow/commons-io-js</connection>
+		<developerConnection>scm:git:https://github.com/msobkow/commons-io-js</developerConnection>
+		<tag>main</tag>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>apache.website</id>
+			<name>Mark's Code Fractal 1.3.42 website</name>
+			<url>scm:git:https://github.com/msobkow/commons-io-js</url>
+		</site>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus release repository</name>
+			<url>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit-pioneer</groupId>
+			<artifactId>junit-pioneer</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Java 21 support, revisit for Mockito 5 -->
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>${commons.bytebuddy.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Java 21 support, revisit for Mockito 5 -->
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy-agent</artifactId>
+			<version>${commons.bytebuddy.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>${commons.mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.jimfs</groupId>
+			<artifactId>jimfs</artifactId>
+			<version>1.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.20.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.22.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.21.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-core</artifactId>
+			<version>${commons.jmh.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>polyglot</artifactId>
+			<version>${graaljs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>js-community</artifactId>
+			<version>${graaljs.version}</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+	<properties>
+		<commons.rc.version>MCFRC1</commons.rc.version>
+		<project.build.outputTimestamp>2026-09-11-11:11:11Z</project.build.outputTimestamp>
+		<graal.mainClass>org.apache.commons.io.CommonsIOLibraryEntry</graal.mainClass>
+		<commons.distSvnStagingBase>scm:git:https://github.com/msobkow/</commons.distSvnStagingBase>
+		<commons.componentid>io</commons.componentid>
+		<commons.distSvnStagingUrl>${commons.distSvnStagingBase}${commons.componentid}${commons.rc.version}</commons.distSvnStagingUrl>
+		<commons.module.name>org.apache.commons.${commons.componentid}</commons.module.name>
+		<commons.repo.name>commons-${commons.componentid}-js</commons.repo.name>
+		<commons.jira.id>IO</commons.jira.id>
+		<commons.jira.pid>12310477</commons.jira.pid>
+		<commons.bc.version>2.21.0</commons.bc.version>
+		<commons.release.version>2.22.0</commons.release.version>
+		<commons.release.next>2.22.1</commons.release.next>
+		<commons.release.isDistModule>true</commons.release.isDistModule>
+		<jacoco.skip>false</jacoco.skip>
+		<commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
+		<commons.jacoco.classRatio>0.92</commons.jacoco.classRatio>
+		<commons.jacoco.instructionRatio>0.91</commons.jacoco.instructionRatio>
+		<commons.jacoco.methodRatio>0.87</commons.jacoco.methodRatio>
+		<commons.jacoco.branchRatio>0.86</commons.jacoco.branchRatio>
+		<commons.jacoco.lineRatio>0.89</commons.jacoco.lineRatio>
+		<commons.jacoco.complexityRatio>0.84</commons.jacoco.complexityRatio>
+		<js.output.name>commons-${commons.componentid}.js</js.output.name>
+			<commons.release.desc>(requires Java 25)</commons.release.desc>
+		<commons.osgi.export>
+			<!-- Explicit list of packages from IO 1.4 -->
+			org.apache.commons.io;
+			org.apache.commons.io.comparator;
+			org.apache.commons.io.filefilter;
+			org.apache.commons.io.input;
+			org.apache.commons.io.output;version=1.4.9999;-noimport:=true,
+			<!-- Same list plus * for new packages -->
+			org.apache.commons.io;
+			org.apache.commons.io.comparator;
+			org.apache.commons.io.filefilter;
+			org.apache.commons.io.input;
+			org.apache.commons.io.output;
+			org.apache.commons.io.*;version=${project.version};-noimport:=true
+		</commons.osgi.export>
+		<commons.osgi.import>
+			<!-- IO-734 - Make the sun.* references from BufferedFileChannelInputStream optional -->
+			sun.nio.ch;resolution:=optional,
+			sun.misc;resolution:=optional,
+			*
+		</commons.osgi.import>
+		<commons.scmPubUrl>https://github.com/msobkow/commons-io-js</commons.scmPubUrl>
+		<commons.scmPubCheckoutDirectory>site-content</commons.scmPubCheckoutDirectory>
+		<commons.bytebuddy.version>1.18.8</commons.bytebuddy.version>
+		<japicmp.skip>false</japicmp.skip>
+		<commons.release.isDistModule>true</commons.release.isDistModule>
+		<!-- JaCoCo: Don't make code coverage worse than: -->
+		<commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
+		<commons.jacoco.classRatio>0.98</commons.jacoco.classRatio>
+		<commons.jacoco.instructionRatio>0.90</commons.jacoco.instructionRatio>
+		<commons.jacoco.methodRatio>0.90</commons.jacoco.methodRatio>
+		<commons.jacoco.branchRatio>0.85</commons.jacoco.branchRatio>
+		<commons.jacoco.lineRatio>0.90</commons.jacoco.lineRatio>
+		<commons.jacoco.complexityRatio>0.85</commons.jacoco.complexityRatio>
+		<!-- Java 21 and up -->
+		<EnableDynamicAgentLoading></EnableDynamicAgentLoading>
+	</properties>
+	<build>
+		<defaultGoal>clean verify apache-rat:check japicmp:cmp pmd:check spotbugs:check javadoc:javadoc</defaultGoal>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>1.0-beta-6</version>
+			</extension>
+	</extensions>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-deploy-plugin</artifactId>
+			<version>3.1.4</version>
+			<configuration>
+				<skip>true</skip>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.sonatype.plugins</groupId>
+			<artifactId>nexus-staging-maven-plugin</artifactId>
+			<version>1.5.1</version>
+			<executions>
+				<execution>
+					<id>default-deploy</id>
+					<phase>deploy</phase>
+					<goals>
+						<goal>deploy</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<serverId>nexus</serverId>
+				<nexusUrl>http://nexus3.mcf.markhome.server:8081/repository/mcf.markhome.server-hosted/</nexusUrl>
+				<skipStaging>true</skipStaging>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<configuration>
+				<excludes>
+					<exclude>**/*PerformanceTest.java</exclude>
+				</excludes>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven-compiler.version}</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>compile</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<executable>export PATH=${env.JAVA_JDK_HOME}/bin:${env.JAVA_JDK_HOME}/lib:${env.BASE_PATH} &amp;&amp; export JAVA_HOME=${env.JAVA_JDK_HOME} &amp;&amp; export JDK_HOME={env.JAVA_JDK_HOME} &amp;&amp; javac </executable>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-scm-publish-plugin</artifactId>
+			<version>${commons.scm-publish.version}</version>
+			<configuration>
+				<ignorePathsToDelete>
+					<ignorePathToDelete>archive**</ignorePathToDelete>
+				</ignorePathsToDelete>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.rat</groupId>
+			<artifactId>apache-rat-plugin</artifactId>
+			<configuration>
+				<inputExcludes>
+					<inputExclude>src/test/resources/org/apache/commons/io/bla.tar</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/bla.tar.xz</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/empty.bin</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/small.bin</inputExclude>
+				</inputExcludes>
+			</configuration>
+		</plugin>
+		<plugin>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive combine.children="append">
+					<manifestEntries>
+						<Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
+					</manifestEntries>
+				</archive>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+				<descriptors>
+					<descriptor>src/assembly/bin.xml</descriptor>
+					<descriptor>src/assembly/src.xml</descriptor>
+				</descriptors>
+				<tarLongFileMode>gnu</tarLongFileMode>
+			</configuration>
+		</plugin>
+		<!--plugin>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<configuration>
+				<source>${maven.compiler.source}</source>
+			</configuration>
+		</plugin-->
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>animal-sniffer-maven-plugin</artifactId>
+			<version>${commons.animal-sniffer.version}</version>
+			<configuration>
+				<ignores>
+					<ignore>java.nio.ByteBuffer</ignore>
+				</ignores>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+<reporting>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.rat</groupId>
+			<artifactId>apache-rat-plugin</artifactId>
+			<configuration>
+				<inputExcludes>
+					<inputExclude>src/test/resources/org/apache/commons/io/bla.tar</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/bla.tar.xz</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/empty.bin</inputExclude>
+					<inputExclude>src/test/resources/org/apache/commons/io/small.bin</inputExclude>
+				</inputExcludes>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-pmd-plugin</artifactId>
+			<version>${commons.pmd.version}</version>
+			<configuration>
+				<targetJdk>${maven.compiler.target}</targetJdk>
+				<rulesets>
+					<ruleset>${basedir}/src/conf/pmd.xml</ruleset>
+				</rulesets>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>com.github.spotbugs</groupId>
+			<artifactId>spotbugs-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>taglist-maven-plugin</artifactId>
+			<configuration>
+				<tags>
+					<tag>TODO</tag>
+					<tag>NOPMD</tag>
+					<tag>NOTE</tag>
+				</tags>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>javancss-maven-plugin</artifactId>
+			<version>2.1</version>
+		</plugin>
+	</plugins>
+</reporting>
+<profiles>
+	<profile>
+		<id>java-8</id>
+		<activation>
+			<jdk>8</jdk>
+		</activation>
+		<properties>
+			<commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
+			<commons.jacoco.classRatio>0.96</commons.jacoco.classRatio>
+			<commons.jacoco.instructionRatio>0.97</commons.jacoco.instructionRatio>
+			<commons.jacoco.methodRatio>0.88</commons.jacoco.methodRatio>
+			<commons.jacoco.branchRatio>0.92</commons.jacoco.branchRatio>
+			<commons.jacoco.complexityRatio>0.88</commons.jacoco.complexityRatio>
+			<commons.jacoco.lineRatio>0.94</commons.jacoco.lineRatio>		
+		</properties>
+	</profile>
+	<profile>
+		<id>java-9-24</id>
+		<activation>
+			<jdk>[9,24]</jdk>
+		</activation>
+		<properties>
+			<commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
+			<commons.jacoco.classRatio>0.96</commons.jacoco.classRatio>
+			<commons.jacoco.instructionRatio>0.97</commons.jacoco.instructionRatio>
+			<commons.jacoco.methodRatio>0.92</commons.jacoco.methodRatio>
+			<commons.jacoco.branchRatio>0.92</commons.jacoco.branchRatio>
+			<commons.jacoco.complexityRatio>0.89</commons.jacoco.complexityRatio>
+			<commons.jacoco.lineRatio>0.95</commons.jacoco.lineRatio>		
+		</properties>
+	</profile>
+	<profile>
+		<id>java-25-up</id>
+		<activation>
+			<jdk>[25,)</jdk>
+		</activation>
+		<properties>
+			<commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
+			<commons.jacoco.classRatio>0.96</commons.jacoco.classRatio>
+			<commons.jacoco.instructionRatio>0.97</commons.jacoco.instructionRatio>
+			<commons.jacoco.methodRatio>0.93</commons.jacoco.methodRatio>
+			<commons.jacoco.branchRatio>0.92</commons.jacoco.branchRatio>
+			<commons.jacoco.complexityRatio>0.90</commons.jacoco.complexityRatio>
+			<commons.jacoco.lineRatio>0.95</commons.jacoco.lineRatio>		
+		</properties>
+	</profile>
+</profiles>
+	<developers>
+		<developer>
+			<name>Scott Sanders</name>
+			<id>sanders</id>
+			<email>sanders@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>dIon Gillard</name>
+			<!-- Note: first name is correctly capitalised above -->
+			<id>dion</id>
+			<email>dion@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Nicola Ken Barozzi</name>
+			<id>nicolaken</id>
+			<email>nicolaken@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Henri Yandell</name>
+			<id>bayard</id>
+			<email>bayard@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Stephen Colebourne</name>
+			<id>scolebourne</id>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>0</timezone>
+		</developer>
+		<developer>
+			<name>Jeremias Maerki</name>
+			<id>jeremias</id>
+			<email>jeremias@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<name>Matthew Hawthorne</name>
+			<id>matth</id>
+			<email>matth@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Martin Cooper</name>
+			<id>martinc</id>
+			<email>martinc@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Rob Oxspring</name>
+			<id>roxspring</id>
+			<email>roxspring@apache.org</email>
+			<organization />
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Jochen Wiedmann</name>
+			<id>jochen</id>
+			<email>jochen.wiedmann@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Niall Pemberton</name>
+			<id>niallp</id>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Jukka Zitting</name>
+			<id>jukka</id>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>ggregory</id>
+			<name>Gary Gregory</name>
+			<email>ggregory at apache.org</email>
+			<url>https://www.garygregory.com</url>
+			<organization>The Apache Software Foundation</organization>
+			<organizationUrl>https://www.apache.org/</organizationUrl>
+			<roles>
+				<role>PMC Member</role>
+			</roles>
+			<timezone>America/New_York</timezone>
+			<properties>
+				<picUrl>https://people.apache.org/~ggregory/img/garydgregory80.png</picUrl>
+			</properties>
+		</developer>
+		<developer>
+			<name>Kristian Rosenvold</name>
+			<id>krosenvold</id>
+			<email>krosenvold@apache.org</email>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Mark Sobkow</name>
+		</contributor>
+		<contributor>
+			<name>Rahul Akolkar</name>
+		</contributor>
+		<contributor>
+			<name>Jason Anderson</name>
+		</contributor>
+		<contributor>
+			<name>Nathan Beyer</name>
+		</contributor>
+		<contributor>
+			<name>Emmanuel Bourg</name>
+		</contributor>
+		<contributor>
+			<name>Chris Eldredge</name>
+		</contributor>
+		<contributor>
+			<name>Magnus Grimsell</name>
+		</contributor>
+		<contributor>
+			<name>Jim Harrington</name>
+		</contributor>
+		<contributor>
+			<name>Thomas Ledoux</name>
+		</contributor>
+		<contributor>
+			<name>Andy Lehane</name>
+		</contributor>
+		<contributor>
+			<name>Marcelo Liberato</name>
+		</contributor>
+		<contributor>
+			<name>Alban Peignier</name>
+			<email>alban.peignier at free.fr</email>
+		</contributor>
+		<contributor>
+			<name>Adam Retter</name>
+			<organization>Evolved Binary</organization>
+		</contributor>
+		<contributor>
+			<name>Ian Springer</name>
+		</contributor>
+		<contributor>
+			<name>Dominik Stadler</name>
+		</contributor>
+		<contributor>
+			<name>Masato Tezuka</name>
+		</contributor>
+		<contributor>
+			<name>James Urie</name>
+		</contributor>
+		<contributor>
+			<name>Frank W. Zammetti</name>
+		</contributor>
+		<contributor>
+			<name>Martin Grigorov</name>
+			<email>mgrigorov@apache.org</email>
+		</contributor>
+		<contributor>
+			<name>Arturo Bernal</name>
+		</contributor>
+		<contributor>
+			<name>Miguel Muñoz</name>
+		</contributor>
+	</contributors>
+</project>
